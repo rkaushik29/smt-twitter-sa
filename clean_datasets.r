@@ -8,3 +8,7 @@ trump_dataset = trump_dataset[!is.na(as.POSIXct(as.character(trump_dataset$creat
 # Duplicate removal
 biden_dataset = biden_dataset %>% distinct(tweet_id, .keep_all = TRUE)
 trump_dataset = trump_dataset %>% distinct(tweet_id, .keep_all = TRUE)
+
+# Write back to dataset
+write.csv(data_biden, file = "filtered_biden.csv", row.names = FALSE)
+write.csv(data_trump, file = "filtered_trump.csv", row.names = FALSE)
