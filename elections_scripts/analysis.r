@@ -1,3 +1,6 @@
+library("syuzhet")
+library("ggplot2")
+
 biden_dataset = read.csv("resources/filtered_biden.csv")  # path to joebiden dataset
 trump_dataset = read.csv("resources/filtered_trump.csv") # path to donaldtrump dataset
 
@@ -33,3 +36,14 @@ print(g)
 #####################################################################################################################################
 
 # Sentiment over time
+sample_idx = sample(nrow(separated_data), 1*nrow(separated_data))
+sample_data = separated_data[sample_idx,]
+
+tweet_sentiment = function(text)
+{
+  sentences = syuzhet::get_sentences(text)
+  sentiments = syuzhet::get_sentiment(sentences, method = "syuzhet")
+  mean(sentiments)
+}
+
+sample_data$sentiment = lapply(sample_data$tweet, tweet_sentiment)
