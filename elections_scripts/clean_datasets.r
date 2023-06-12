@@ -1,5 +1,5 @@
 biden_dataset = read.csv("resources/joebiden.csv")  # path to joebiden dataset
-trump_dataset = read.csv("archive/donaldtrump.csv") # path to donaldtrump dataset
+trump_dataset = read.csv("resources/donaldtrump.csv") # path to donaldtrump dataset
 
 # Removing rows with garbage values
 biden_dataset = biden_dataset[!is.na(as.POSIXct(as.character(biden_dataset$created_at), format = "%Y-%m-%d %H:%M:%S")),]
